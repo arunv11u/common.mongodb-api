@@ -1,0 +1,17 @@
+# Dependencies
+node_modules
+
+# Exclude build files
+build
+
+#Exclude coverage files
+coverage
+
+# Exclude ts-jest log file
+ts-jest.log
+
+# Exclude tsconfig build info
+tsconfig.build.tsbuildinfo
+
+# Ignore Test Report
+test-report.html

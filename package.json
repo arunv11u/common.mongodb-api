@@ -1,0 +1,62 @@
+{
+	"name": "@arunvaradharajalu/common.mongodb-api",
+	"version": "1.0.0",
+	"description": "This package contains wrapper for mongodb module",
+	"main": "./build/index.js",
+	"types": "./build/index.d.ts",
+	"files": [
+		"build/**/*"
+	],
+	"scripts": {
+		"clean": "rimraf build",
+		"build": "npm run clean && tsc --project tsconfig.build.json",
+		"test": "jest --watchAll --verbose --no-cache --detectOpenHandles --env=node --coverage"
+	},
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node",
+		"globalSetup": "./test/global-setup.ts",
+		"globalTeardown": "./test/global-teardown.ts",
+		"setupFilesAfterEnv": [
+			"./test/setup.ts"
+		],
+		"roots": [
+			"<rootDir>/test"
+		],
+		"clearMocks": true,
+		"reporters": [
+			"default",
+			[
+				"./node_modules/jest-html-reporter",
+				{
+					"pageTitle": "MongoDB API Test Report"
+				}
+			]
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/arunv11u/common.mongodb-api.git"
+	},
+	"keywords": [
+		"mongodb-api-wrapper"
+	],
+	"author": "Arun Varadharajalu",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/arunv11u/common.mongodb-api/issues"
+	},
+	"homepage": "https://github.com/arunv11u/common.mongodb-api#readme",
+	"devDependencies": {
+		"@faker-js/faker": "^7.6.0",
+		"@types/jest": "^29.5.12",
+		"jest-html-reporter": "^3.10.2",
+		"rimraf": "^5.0.7",
+		"ts-jest": "^29.1.4"
+	},
+	"dependencies": {
+		"@arunvaradharajalu/common.errors": "^1.0.0",
+		"mongodb": "^6.7.0",
+		"mongodb-memory-server": "^8.12.2"
+	}
+}
