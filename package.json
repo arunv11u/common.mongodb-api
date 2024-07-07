@@ -51,12 +51,12 @@
 		"@faker-js/faker": "^7.6.0",
 		"@types/jest": "^29.5.12",
 		"jest-html-reporter": "^3.10.2",
+		"mongodb-memory-server": "^8.12.2",
 		"rimraf": "^5.0.7",
 		"ts-jest": "^29.1.4"
 	},
 	"dependencies": {
 		"@arunvaradharajalu/common.errors": "^1.0.0",
-		"mongodb": "^6.7.0",
-		"mongodb-memory-server": "^8.12.2"
+		"mongodb": "^6.7.0"
 	}
 }
