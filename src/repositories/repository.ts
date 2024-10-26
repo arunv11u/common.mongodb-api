@@ -18,7 +18,8 @@ import {
 	UpdateOptions,
 	DeleteOptions,
 	AggregateOptions,
-	FindOneAndUpdateOptions
+	FindOneAndUpdateOptions,
+	AnyBulkWriteOperation
 } from "mongodb";
 import { MongoDBConnect, MongoDBRepository } from "../utils";
 import { GenericError } from "../utils/errors";
@@ -342,6 +343,25 @@ class MongoDBRepositoryImpl implements MongoDBRepository {
 			);
 
 		return data;
+	}
+
+	async bulkWrite(
+		collectionName: string,
+		operations: AnyBulkWriteOperation[]
+	): Promise<void>
+	async bulkWrite(
+		collectionName: string,
+		operations: AnyBulkWriteOperation[],
+		options?: BulkWriteOptions
+	): Promise<void> {
+		if (!this._mongoDBConnect.isConnected())
+			await this._mongoDBConnect.reconnect();
+
+		await this._db.collection(collectionName)
+			.bulkWrite(
+				operations,
+				{ ...options, session: this._session ?? undefined }
+			)
 	}
 
 	async commitTransaction(): Promise<void> {

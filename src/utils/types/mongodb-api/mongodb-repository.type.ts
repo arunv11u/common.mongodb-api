@@ -17,7 +17,8 @@ import {
 	UpdateResult,
 	WithId,
 	ModifyResult,
-	FindOneAndUpdateOptions
+	FindOneAndUpdateOptions,
+	AnyBulkWriteOperation
 } from "mongodb";
 
 
@@ -165,6 +166,17 @@ export abstract class MongoDBRepository {
 		filter: Filter<T>,
 		options: DeleteOptions
 	): Promise<DeleteResult>;
+
+	abstract bulkWrite(
+		collectionName: string,
+		operations: AnyBulkWriteOperation[]
+	): Promise<void>;
+
+	abstract bulkWrite(
+		collectionName: string,
+		operations: AnyBulkWriteOperation[],
+		options: BulkWriteOptions
+	): Promise<void>;
 
 	abstract commitTransaction(): Promise<void>;
 	abstract abortTransaction(): Promise<void>;
